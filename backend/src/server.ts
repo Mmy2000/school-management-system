@@ -10,6 +10,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 import cookieParser from 'cookie-parser';
 import { connectDB } from "./config/db";
+import userRoutes from "./routes/user";
 
 dotenv.config();
 
@@ -35,6 +36,9 @@ app.use(
 app.get("/", (req: Request, res: Response) => {
   res.status(200).json({ status: "OK", message: "Server is healthy" });
 });
+
+
+app.use("/api/users", userRoutes);
 
 // global error handler middleware
 app.use((err: Error, req: Request, res: Response, next: Function) => {
